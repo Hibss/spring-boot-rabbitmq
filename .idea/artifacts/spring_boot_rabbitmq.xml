@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" build-on-make="true" name="spring-boot-rabbitmq">
+    <output-path>$PROJECT_DIR$/out/artifacts/spring_boot_rabbitmq</output-path>
+    <root id="root">
+      <element id="dir-copy" path="G:/git/spring-boot-examples-master/spring-boot-examples-master/spring-boot-rabbitmq/target" />
+    </root>
+  </artifact>
+</component>

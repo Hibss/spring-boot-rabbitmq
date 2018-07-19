@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfz.mapper.RabbitMessageMapper">
+  <resultMap id="BaseResultMap" type="com.jfz.model.RabbitMessage">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="exchange" jdbcType="VARCHAR" property="exchange" />
+    <result column="routing_key" jdbcType="VARCHAR" property="routingKey" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="message_type" jdbcType="SMALLINT" property="messageType" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="host" jdbcType="VARCHAR" property="host" />
+    <result column="erp_table" jdbcType="VARCHAR" property="erpTable" />
+    <result column="erp_id" jdbcType="BIGINT" property="erpId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jfz.model.RabbitMessage">
+    <result column="context" jdbcType="LONGVARCHAR" property="context" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, exchange, routing_key, create_time, message_type, remark, host, erp_table, erp_id
+  </sql>
+  <sql id="Blob_Column_List">
+    context
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from mq_rabbit_message
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mq_rabbit_message
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jfz.model.RabbitMessage">
+    insert into mq_rabbit_message (id, exchange, routing_key, 
+      create_time, message_type, remark, 
+      host, erp_table, erp_id, 
+      context)
+    values (#{id,jdbcType=BIGINT}, #{exchange,jdbcType=VARCHAR}, #{routingKey,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{messageType,jdbcType=SMALLINT}, #{remark,jdbcType=VARCHAR}, 
+      #{host,jdbcType=VARCHAR}, #{erpTable,jdbcType=VARCHAR}, #{erpId,jdbcType=BIGINT}, 
+      #{context,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jfz.model.RabbitMessage">
+    insert into mq_rabbit_message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="exchange != null">
+        exchange,
+      </if>
+      <if test="routingKey != null">
+        routing_key,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="messageType != null">
+        message_type,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="host != null">
+        host,
+      </if>
+      <if test="erpTable != null">
+        erp_table,
+      </if>
+      <if test="erpId != null">
+        erp_id,
+      </if>
+      <if test="context != null">
+        context,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="exchange != null">
+        #{exchange,jdbcType=VARCHAR},
+      </if>
+      <if test="routingKey != null">
+        #{routingKey,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messageType != null">
+        #{messageType,jdbcType=SMALLINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="host != null">
+        #{host,jdbcType=VARCHAR},
+      </if>
+      <if test="erpTable != null">
+        #{erpTable,jdbcType=VARCHAR},
+      </if>
+      <if test="erpId != null">
+        #{erpId,jdbcType=BIGINT},
+      </if>
+      <if test="context != null">
+        #{context,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jfz.model.RabbitMessage">
+    update mq_rabbit_message
+    <set>
+      <if test="exchange != null">
+        exchange = #{exchange,jdbcType=VARCHAR},
+      </if>
+      <if test="routingKey != null">
+        routing_key = #{routingKey,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messageType != null">
+        message_type = #{messageType,jdbcType=SMALLINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="host != null">
+        host = #{host,jdbcType=VARCHAR},
+      </if>
+      <if test="erpTable != null">
+        erp_table = #{erpTable,jdbcType=VARCHAR},
+      </if>
+      <if test="erpId != null">
+        erp_id = #{erpId,jdbcType=BIGINT},
+      </if>
+      <if test="context != null">
+        context = #{context,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jfz.model.RabbitMessage">
+    update mq_rabbit_message
+    set exchange = #{exchange,jdbcType=VARCHAR},
+      routing_key = #{routingKey,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      message_type = #{messageType,jdbcType=SMALLINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      host = #{host,jdbcType=VARCHAR},
+      erp_table = #{erpTable,jdbcType=VARCHAR},
+      erp_id = #{erpId,jdbcType=BIGINT},
+      context = #{context,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jfz.model.RabbitMessage">
+    update mq_rabbit_message
+    set exchange = #{exchange,jdbcType=VARCHAR},
+      routing_key = #{routingKey,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      message_type = #{messageType,jdbcType=SMALLINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      host = #{host,jdbcType=VARCHAR},
+      erp_table = #{erpTable,jdbcType=VARCHAR},
+      erp_id = #{erpId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getRabbitMessage"  resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from mq_rabbit_message
+    where exchange = #{exchange,jdbcType=VARCHAR} AND routing_key=#{routingKey,jdbcType=VARCHAR} AND instr(context,#{context,jdbcType=VARCHAR})&gt;0
+  </select>
+
+  <insert id="insertAndGenIdSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.jfz.model.RabbitMessage">
+    insert into mq_rabbit_message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="exchange != null">
+        exchange,
+      </if>
+      <if test="routingKey != null">
+        routing_key,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="messageType != null">
+        message_type,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="host != null">
+        host,
+      </if>
+      <if test="erpTable != null">
+        erp_table,
+      </if>
+      <if test="erpId != null">
+        erp_id,
+      </if>
+      <if test="context != null">
+        context,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="exchange != null">
+        #{exchange,jdbcType=VARCHAR},
+      </if>
+      <if test="routingKey != null">
+        #{routingKey,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messageType != null">
+        #{messageType,jdbcType=SMALLINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="host != null">
+        #{host,jdbcType=VARCHAR},
+      </if>
+      <if test="erpTable != null">
+        #{erpTable,jdbcType=VARCHAR},
+      </if>
+      <if test="erpId != null">
+        #{erpId,jdbcType=BIGINT},
+      </if>
+      <if test="context != null">
+        #{context,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

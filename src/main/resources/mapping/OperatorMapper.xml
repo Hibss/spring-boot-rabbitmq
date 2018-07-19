@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfz.mapper.OperatorMapper">
+  <resultMap id="BaseResultMap" type="com.jfz.model.Operator">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="card" jdbcType="VARCHAR" property="card" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="uid" jdbcType="BIGINT" property="uid" />
+    <result column="org" jdbcType="VARCHAR" property="org" />
+    <result column="is_delete" jdbcType="SMALLINT" property="isDelete" />
+    <result column="row_state" jdbcType="SMALLINT" property="rowState" />
+    <result column="owner_id" jdbcType="BIGINT" property="ownerId" />
+    <result column="owner_name" jdbcType="VARCHAR" property="ownerName" />
+    <result column="creator_name" jdbcType="VARCHAR" property="creatorName" />
+    <result column="creator_id" jdbcType="BIGINT" property="creatorId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="updator_name" jdbcType="VARCHAR" property="updatorName" />
+    <result column="updator_id" jdbcType="BIGINT" property="updatorId" />
+    <result column="manage_count" jdbcType="INTEGER" property="manageCount" />
+    <result column="is_signup" jdbcType="SMALLINT" property="isSignup" />
+    <result column="is_minister" jdbcType="SMALLINT" property="isMinister" />
+    <result column="is_qualification" jdbcType="SMALLINT" property="isQualification" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, card, mobile, uid, org, is_delete, row_state, owner_id, owner_name, creator_name, 
+    creator_id, create_time, update_time, updator_name, updator_id, manage_count, is_signup, 
+    is_minister, is_qualification
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crm_operator
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from crm_operator
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.jfz.model.Operator">
+    insert into crm_operator (id, name, card, 
+      mobile, uid, org, is_delete, 
+      row_state, owner_id, owner_name, 
+      creator_name, creator_id, create_time, 
+      update_time, updator_name, updator_id, 
+      manage_count, is_signup, is_minister, 
+      is_qualification)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{card,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{uid,jdbcType=BIGINT}, #{org,jdbcType=VARCHAR}, #{isDelete,jdbcType=SMALLINT}, 
+      #{rowState,jdbcType=SMALLINT}, #{ownerId,jdbcType=BIGINT}, #{ownerName,jdbcType=VARCHAR}, 
+      #{creatorName,jdbcType=VARCHAR}, #{creatorId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updatorName,jdbcType=VARCHAR}, #{updatorId,jdbcType=BIGINT}, 
+      #{manageCount,jdbcType=INTEGER}, #{isSignup,jdbcType=SMALLINT}, #{isMinister,jdbcType=SMALLINT}, 
+      #{isQualification,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jfz.model.Operator">
+    insert into crm_operator
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="card != null">
+        card,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="org != null">
+        org,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="rowState != null">
+        row_state,
+      </if>
+      <if test="ownerId != null">
+        owner_id,
+      </if>
+      <if test="ownerName != null">
+        owner_name,
+      </if>
+      <if test="creatorName != null">
+        creator_name,
+      </if>
+      <if test="creatorId != null">
+        creator_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updatorName != null">
+        updator_name,
+      </if>
+      <if test="updatorId != null">
+        updator_id,
+      </if>
+      <if test="manageCount != null">
+        manage_count,
+      </if>
+      <if test="isSignup != null">
+        is_signup,
+      </if>
+      <if test="isMinister != null">
+        is_minister,
+      </if>
+      <if test="isQualification != null">
+        is_qualification,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="card != null">
+        #{card,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="org != null">
+        #{org,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=SMALLINT},
+      </if>
+      <if test="rowState != null">
+        #{rowState,jdbcType=SMALLINT},
+      </if>
+      <if test="ownerId != null">
+        #{ownerId,jdbcType=BIGINT},
+      </if>
+      <if test="ownerName != null">
+        #{ownerName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorName != null">
+        #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatorName != null">
+        #{updatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="updatorId != null">
+        #{updatorId,jdbcType=BIGINT},
+      </if>
+      <if test="manageCount != null">
+        #{manageCount,jdbcType=INTEGER},
+      </if>
+      <if test="isSignup != null">
+        #{isSignup,jdbcType=SMALLINT},
+      </if>
+      <if test="isMinister != null">
+        #{isMinister,jdbcType=SMALLINT},
+      </if>
+      <if test="isQualification != null">
+        #{isQualification,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jfz.model.Operator">
+    update crm_operator
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="card != null">
+        card = #{card,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="org != null">
+        org = #{org,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=SMALLINT},
+      </if>
+      <if test="rowState != null">
+        row_state = #{rowState,jdbcType=SMALLINT},
+      </if>
+      <if test="ownerId != null">
+        owner_id = #{ownerId,jdbcType=BIGINT},
+      </if>
+      <if test="ownerName != null">
+        owner_name = #{ownerName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorName != null">
+        creator_name = #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatorName != null">
+        updator_name = #{updatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="updatorId != null">
+        updator_id = #{updatorId,jdbcType=BIGINT},
+      </if>
+      <if test="manageCount != null">
+        manage_count = #{manageCount,jdbcType=INTEGER},
+      </if>
+      <if test="isSignup != null">
+        is_signup = #{isSignup,jdbcType=SMALLINT},
+      </if>
+      <if test="isMinister != null">
+        is_minister = #{isMinister,jdbcType=SMALLINT},
+      </if>
+      <if test="isQualification != null">
+        is_qualification = #{isQualification,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jfz.model.Operator">
+    update crm_operator
+    set name = #{name,jdbcType=VARCHAR},
+      card = #{card,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=BIGINT},
+      org = #{org,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=SMALLINT},
+      row_state = #{rowState,jdbcType=SMALLINT},
+      owner_id = #{ownerId,jdbcType=BIGINT},
+      owner_name = #{ownerName,jdbcType=VARCHAR},
+      creator_name = #{creatorName,jdbcType=VARCHAR},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      updator_name = #{updatorName,jdbcType=VARCHAR},
+      updator_id = #{updatorId,jdbcType=BIGINT},
+      manage_count = #{manageCount,jdbcType=INTEGER},
+      is_signup = #{isSignup,jdbcType=SMALLINT},
+      is_minister = #{isMinister,jdbcType=SMALLINT},
+      is_qualification = #{isQualification,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="getByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from crm_operator
+    where is_delete=0 AND instr(name,#{name})&gt;0
+  </select>
+</mapper>
