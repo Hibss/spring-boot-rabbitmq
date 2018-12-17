@@ -1,4 +1,4 @@
-package com.jfz.model;
+package com.steven.model;
 
 import java.util.Date;
 

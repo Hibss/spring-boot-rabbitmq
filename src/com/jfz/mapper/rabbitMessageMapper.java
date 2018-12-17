@@ -1,6 +1,6 @@
-package com.jfz.mapper;
+package com.steven.mapper;
 
-import com.jfz.model.rabbitMessage;
+import com.steven.model.rabbitMessage;
 
 public interface rabbitMessageMapper {
     int deleteByPrimaryKey(Long id);

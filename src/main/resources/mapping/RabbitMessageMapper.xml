@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jfz.mapper.RabbitMessageMapper">
-  <resultMap id="BaseResultMap" type="com.jfz.model.RabbitMessage">
+<mapper namespace="com.steven.mapper.RabbitMessageMapper">
+  <resultMap id="BaseResultMap" type="com.steven.model.RabbitMessage">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="exchange" jdbcType="VARCHAR" property="exchange" />
     <result column="routing_key" jdbcType="VARCHAR" property="routingKey" />
@@ -12,7 +12,7 @@
     <result column="erp_table" jdbcType="VARCHAR" property="erpTable" />
     <result column="erp_id" jdbcType="BIGINT" property="erpId" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jfz.model.RabbitMessage">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.steven.model.RabbitMessage">
     <result column="context" jdbcType="LONGVARCHAR" property="context" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -33,7 +33,7 @@
     delete from mq_rabbit_message
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.jfz.model.RabbitMessage">
+  <insert id="insert" parameterType="com.steven.model.RabbitMessage">
     insert into mq_rabbit_message (id, exchange, routing_key, 
       create_time, message_type, remark, 
       host, erp_table, erp_id, 
@@ -43,7 +43,7 @@
       #{host,jdbcType=VARCHAR}, #{erpTable,jdbcType=VARCHAR}, #{erpId,jdbcType=BIGINT}, 
       #{context,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.jfz.model.RabbitMessage">
+  <insert id="insertSelective" parameterType="com.steven.model.RabbitMessage">
     insert into mq_rabbit_message
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -110,7 +110,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jfz.model.RabbitMessage">
+  <update id="updateByPrimaryKeySelective" parameterType="com.steven.model.RabbitMessage">
     update mq_rabbit_message
     <set>
       <if test="exchange != null">
@@ -143,7 +143,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jfz.model.RabbitMessage">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.steven.model.RabbitMessage">
     update mq_rabbit_message
     set exchange = #{exchange,jdbcType=VARCHAR},
       routing_key = #{routingKey,jdbcType=VARCHAR},
@@ -156,7 +156,7 @@
       context = #{context,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jfz.model.RabbitMessage">
+  <update id="updateByPrimaryKey" parameterType="com.steven.model.RabbitMessage">
     update mq_rabbit_message
     set exchange = #{exchange,jdbcType=VARCHAR},
       routing_key = #{routingKey,jdbcType=VARCHAR},
@@ -178,7 +178,7 @@
     where exchange = #{exchange,jdbcType=VARCHAR} AND routing_key=#{routingKey,jdbcType=VARCHAR} AND instr(context,#{context,jdbcType=VARCHAR})&gt;0
   </select>
 
-  <insert id="insertAndGenIdSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.jfz.model.RabbitMessage">
+  <insert id="insertAndGenIdSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.steven.model.RabbitMessage">
     insert into mq_rabbit_message
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
